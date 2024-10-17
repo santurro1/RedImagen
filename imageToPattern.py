@@ -47,14 +47,7 @@ def image_to_binary_pattern(pattern_base, threshold=128, grid_size=(10, 10)):
     return np.array(patterns_base)
 
 # Ejemplo de uso
-pattern_base = []
-image_path = "./imagen1.jpg"  # Reemplaza con la ruta a tu imagen
-pattern_base.append(image_path)
-image_path = "./imagen2.jpg"  # Reemplaza con la ruta a tu imagen
-pattern_base.append(image_path)
-image_path = "./imagen3.jpg"  # Reemplaza con la ruta a tu imagen
-pattern_base.append(image_path)
-
+pattern_base = ["./imagen1.jpg", "./imagen2.jpg", "./imagen3.jpg"]  # Lista de imágenes
 threshold = 128  # Ajusta el umbral aquí
 image_to_binary_pattern(pattern_base, threshold)
 
