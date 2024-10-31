@@ -44,7 +44,8 @@ def get_trimmed_image(image_path):
 def image_to_binary_pattern(pattern_base, threshold=128, grid_size=(20, 20)):
     num = 1
     patterns_base = []
-    for i in range(3):
+    Cantidad_patterns = len(pattern_base)
+    for i in range(Cantidad_patterns):
         name_image = "./imagenes/cropped" + str(num) + ".jpg"
         image = get_trimmed_image(pattern_base[i])
         image.save(name_image)
@@ -68,10 +69,11 @@ def image_to_binary_pattern(pattern_base, threshold=128, grid_size=(20, 20)):
         
     return np.array(patterns_base)
 
-# Generar 50 patrones de la letra A con ruido
+# Generar 50 patrones con ruido de la imagenes pasadas
 def generate_noisy_patterns(base_pattern, num_patterns, noise_level):
     noisy_patterns = []
-    for i in range(3):
+    Cantidad_patterns = len(base_pattern)
+    for i in range(Cantidad_patterns):
         for _ in range(num_patterns):
             noisy_pattern = base_pattern[i].copy()
             noise = np.random.choice([0, 1], size=base_pattern[i].shape, p=[1 - noise_level, noise_level])
@@ -79,7 +81,7 @@ def generate_noisy_patterns(base_pattern, num_patterns, noise_level):
             noisy_patterns.append(noisy_pattern)
     return np.array(noisy_patterns)
 
-# Gene patron random similar a la letra A para probar
+# Genera patron random similar a alguna de las imagenes
 def generated_random_pattern(base_pattern, noise_level):
     noisy_pattern = base_pattern.copy()
     noise = np.random.choice([0, 1], size=base_pattern.shape, p=[1 - noise_level, noise_level])
@@ -106,9 +108,11 @@ base_pattern = []
 tamano = len(noisy_patterns)
 num_rand = random.randint(0, tamano)
 
+print("Cantidad de patrones base:", len(pattern_base))
 print("Patron random: ", num_rand)
 print("Tamaño: ", tamano)
 base_pattern = noisy_patterns[num_rand].copy()
+
 # Agarramos un pater de prueba
 test_pattern = generated_random_pattern(base_pattern, noise_level=0.1)
 test_pattern = test_pattern.flatten()  # Convierte una matriz en un vector
